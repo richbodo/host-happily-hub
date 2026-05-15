@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Network Health</title>
+  <meta name="description" content="Research, educational materials, and software for studying social-network health and applying it to distributed communities.">
+  <link rel="icon" type="image/svg+xml" href="/78e65dce-3229-46b0-be38-02da250aaddc.svg">
+  
+  <style>
+    :root {
+      --bg: #fdfcf9;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --ink-muted: #7a7a7a;
+      --rule: #e6e2d8;
+      --link: #2C7AB1;            /* the blue node from the logo */
+      --maxw: 720px;
+
+      /* logo node colors, used only as tiny accent dots */
+      --c-green: #63A375;
+      --c-coral: #D57A66;
+      --c-plum:  #713E5A;
+      --c-blue:  #2C7AB1;
+      --c-gold:  #DCA05A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #15140f;
+        --ink: #eae6da;
+        --ink-soft: #b3aea0;
+        --ink-muted: #807a6c;
+        --rule: #2c2a23;
+        --link: #6fb1de;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      padding: 0 24px 80px;
+    }
+
+    main, header, footer { max-width: var(--maxw); margin: 0 auto; }
+
+    /* ─── header ───────────────────────────────────────────────────── */
+    header {
+      padding: 32px 0 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand img { width: 36px; height: 36px; display: block; }
+    .brand .name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+    .brand:hover .name { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ─── intro ────────────────────────────────────────────────────── */
+    .intro {
+      padding: 40px 0 8px;
+    }
+    .intro p {
+      font-size: 17px;
+      line-height: 1.65;
+      margin: 0 0 14px;
+      color: var(--ink);
+      max-width: 62ch;
+    }
+    .intro p:last-child {
+      color: var(--ink-soft);
+    }
+
+    /* ─── sections ─────────────────────────────────────────────────── */
+    section {
+      padding: 32px 0 8px;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ─── project cards ────────────────────────────────────────────── */
+    .project {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .project:last-child { border-bottom: none; }
+
+    .project-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .project-dot {
+      flex-shrink: 0;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--c);
+      align-self: center;
+    }
+    .project h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.005em;
+    }
+    .project h3 a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .project h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .status {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .project p {
+      font-size: 15.5px;
+      line-height: 1.6;
+      margin: 0 0 10px;
+      color: var(--ink-soft);
+      max-width: 62ch;
+    }
+    .project p:last-child { margin-bottom: 0; }
+
+    .links {
+      font-size: 14px;
+      color: var(--ink-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      margin-top: 12px;
+      line-height: 1.8;
+    }
+    .links a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .links .sub {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .links .sub a { color: var(--ink-soft); }
+
+    /* ─── footer ───────────────────────────────────────────────────── */
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-size: 13px;
+      color: var(--ink-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    footer a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+<header data-screen-label="Header">
+  <a href="#" class="brand" aria-label="Social Network Health — home">
+    <img src="/78e65dce-3229-46b0-be38-02da250aaddc.svg" alt="">
+    <span class="name">Social Network Health</span>
+  </a>
+</header>
+
+<main>
+
+  <div class="intro" data-screen-label="Intro">
+    <p>
+      A working group studying social-network health and applying it to distributed communities. The materials below are organized for developers and researchers who want to dig in.
+    </p>
+  </div>
+
+  <section data-screen-label="Software">
+    <h2>Software</h2>
+
+    <article class="project" id="pnt" style="--c: var(--c-coral);">
+      <div class="project-head">
+        <span class="project-dot" aria-hidden="true"></span>
+        <h3><a href="https://github.com/richbodo/personal_network_toolkit" target="_blank" rel="noopener">Personal Network Toolkit</a></h3>
+        <span class="status">active</span>
+      </div>
+      <p>
+        A pattern set for building <strong>Personal Network Applications</strong> (PNAs) — user-owned apps that manage local relationship data outside of SaaS systems. PNAs operate on private local data and on data you choose to share, with strong contracts so users understand and control both their applications and their data.
+      </p>
+      <div class="links">
+        <a href="https://github.com/richbodo/personal_network_toolkit" target="_blank" rel="noopener">github.com/richbodo/personal_network_toolkit</a>
+        <span class="sub">reference designs: <a href="https://github.com/richbodo/fellows_local_db" target="_blank" rel="noopener">fellows_local_db</a> (directory archive PNA) · <a href="https://github.com/richbodo/prt" target="_blank" rel="noopener">PRT</a> (archived; basis for a forthcoming PRM)</span>
+      </div>
+    </article>
+
+    <article class="project" id="choir" style="--c: var(--c-gold);">
+      <div class="project-head">
+        <span class="project-dot" aria-hidden="true"></span>
+        <h3>Choir protocol</h3>
+        <span class="status">idea stage</span>
+      </div>
+      <p>
+        A forward-looking protocol that lets PNAs share anonymized communication statistics. Users control local AIs that read across their PNAs and other local apps to collect stats and survey responses, producing actionable insights for a community to maintain its own health — without centralizing private data anywhere.
+      </p>
+      <div class="links">
+        <span style="color: var(--ink-muted);">proposal drafting on GitHub — link forthcoming</span>
+      </div>
+    </article>
+  </section>
+
+  <section data-screen-label="Research &amp; materials">
+    <h2>Research &amp; materials</h2>
+
+    <article class="project" id="toolkit" style="--c: var(--c-green);">
+      <div class="project-head">
+        <span class="project-dot" aria-hidden="true"></span>
+        <h3><a href="https://toolkit.socialnetwork.health" target="_blank" rel="noopener">SNH Toolkit</a></h3>
+        <span class="status">wiki · live</span>
+      </div>
+      <p>
+        A MediaWiki of best practices and research findings, distilled from running social-network-health programs in real communities.
+      </p>
+      <div class="links">
+        <a href="https://toolkit.socialnetwork.health" target="_blank" rel="noopener">toolkit.socialnetwork.health</a>
+      </div>
+    </article>
+
+    <article class="project" id="gpt" style="--c: var(--c-blue);">
+      <div class="project-head">
+        <span class="project-dot" aria-hidden="true"></span>
+        <h3><a href="https://chatgpt.com/g/g-67c7b452ac188191aa2fab75ce290cc4-social-network-health-researcher" target="_blank" rel="noopener">SNH GPT — Researcher</a></h3>
+        <span class="status">openai gpt · live</span>
+      </div>
+      <p>
+        A custom GPT grounded in hundreds of papers and articles on social-network health, with a focus on remote and distributed teams. Useful when you want a literature-aware answer fast, with citations to dig into.
+      </p>
+      <div class="links">
+        <a href="https://chatgpt.com/g/g-67c7b452ac188191aa2fab75ce290cc4-social-network-health-researcher" target="_blank" rel="noopener">open the GPT →</a>
+        <span class="sub">subsystem: <a href="https://github.com/richbodo/VectorKnowledgeBase" target="_blank" rel="noopener">VectorKnowledgeBase</a> (vector DB + ingestion)</span>
+        <span class="sub">sources: <a href="https://drive.google.com/drive/folders/1CQIZnHCojqnvGuiOmn9UR7Jbf9nGlICD" target="_blank" rel="noopener">drive folder</a></span>
+      </div>
+    </article>
+
+    <article class="project" id="videos" style="--c: var(--c-plum);">
+      <div class="project-head">
+        <span class="project-dot" aria-hidden="true"></span>
+        <h3><a href="https://www.youtube.com/@SocialNetworkHealth" target="_blank" rel="noopener">Video archive</a></h3>
+        <span class="status">youtube · ongoing</span>
+      </div>
+      <p>
+        Interviews and field reports from researchers, trainers, and community organizers. Most episodes are unlisted drafts used inside the Toolkit.
+      </p>
+      <div class="links">
+        <a href="https://www.youtube.com/@SocialNetworkHealth" target="_blank" rel="noopener">@SocialNetworkHealth on YouTube →</a>
+      </div>
+    </article>
+  </section>
+
+</main>
+
+<footer data-screen-label="Footer">
+  Maintained by <a href="https://github.com/richbodo" target="_blank" rel="noopener">Rich Bodo</a>. Source and issues on GitHub.
+</footer>
+
+
+
+</body></html>
